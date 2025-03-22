@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `beverage_system`.`users` (
   `email` VARCHAR(255) NULL,
   `password` VARCHAR(45) NULL,
   `role` VARCHAR(10) NULL,
+  `is_active` CHAR(1) NULL DEFAULT 'Y',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `beverage_system`.`items` (
   `name` VARCHAR(100) NULL,
   `description` VARCHAR(255) NULL,
   `price` INT NULL,
+  `is_active` CHAR(1) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -64,6 +66,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `beverage_system`.`staffs` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
+  `is_active` CHAR(1) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -94,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `beverage_system`.`orders` (
   `order_details_id` INT NOT NULL,
   `users_id` INT ZEROFILL NOT NULL,
   `staffs_id` INT NOT NULL,
+  `is_active` CHAR(1) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_orders_users1_idx` (`users_id` ASC),
   INDEX `fk_orders_staffs1_idx` (`staffs_id` ASC),
