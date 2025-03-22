@@ -24,6 +24,7 @@ func (service *UserService) GetUsers() ([]entity.User, error) {
 }
 
 func (service *UserService) GetUserByID(ID int) (entity.User, error) {
+	// user, err := service.userRepository.FindByID(ID)
 	user, err := service.userRepository.FindByID(ID)
 	if err != nil {
 		return user, err

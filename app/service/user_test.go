@@ -39,12 +39,11 @@ func TestProductService_GetProductByIDNotFound(t *testing.T) {
 }
 
 func TestProductService_GetUsers(t *testing.T) {
-	user := entity.User{
-		ID:   1,
-		Name: "Laptop",
-		Age:  25,
-	}
-	result, err := userService.GetUsers()
-	assert.Nil(t, err)
-	assert.Equal(t, result)
+	user := entity.User{}
+
+	userRepo.On("FindByID", 1).Return(user, errors.New("Product not found"))
+
+	result, err := userService.GetUserByID(1)
+	assert.NotNil(t, err)
+	assert.Equal(t, user, result)
 }
